@@ -20,6 +20,7 @@
     const canvasHeight = screen.height*0.8;
     const minSpeed = 3;
     const maxSpeed = 8;
+    const speedChange = 2;
 
     var brojPogodenih = 0;
 
@@ -104,13 +105,14 @@ function component(width, height, color, x, y, type) {
     
     this.newPos = function() {
         if (this.x - this.width / 2 < 0)
-            this.speed_x = -this.speed_x + (Math.random() < 0.5 ? -1 : 1)*Math.random()*0.2
+            this.speed_x = Math.abs(this.speed_x) + (Math.random() < 0.5 ? -1 : 1)*Math.random()*speedChange
         else if ((this.x + this.width / 2) >= myGameArea.context.canvas.width)
-            this.speed_x = -this.speed_x + (Math.random() < 0.5 ? -1 : 1)*Math.random()*0.2
+            this.speed_x = -Math.abs(this.speed_x) + (Math.random() < 0.5 ? -1 : 1)*Math.random()*speedChange
         if (this.y - this.height / 2 < 0)
-            this.speed_y = -this.speed_y + (Math.random() < 0.5 ? -1 : 1)*Math.random()*0.2
+            this.speed_y = -Math.abs(this.speed_y) + (Math.random() < 0.5 ? -1 : 1)*Math.random()*speedChange
         else if ((this.y + this.height / 2) >= myGameArea.context.canvas.height)
-            this.speed_y = -this.speed_y + (Math.random() < 0.5 ? -1 : 1)*Math.random()*0.2
+            this.speed_y = Math.abs(this.speed_y) + (Math.random() < 0.5 ? -1 : 1)*Math.random()*speedChange
+
         this.x += this.speed_x;
         this.y -= this.speed_y;
     }
